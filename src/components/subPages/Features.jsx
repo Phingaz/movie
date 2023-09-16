@@ -2,15 +2,18 @@
 import { MovieCard } from "../MovieCard";
 import { DropDown } from "../utitlity/DropDown";
 import { Link } from "react-router-dom";
+import Main from "../../Context";
+import { useContext } from "react";
 
-export const Features = ({ data, options }) => {
+export const Features = ({ data, dropDownOptions }) => {
+  const { option, url } = useContext(Main);
   return (
     <section className="w-[min(90%,1300px)] mx-auto py-10">
       <div className="flex justify-between pb-10">
-        <DropDown options={options} />
+        <DropDown options={dropDownOptions} />
         <Link
           className="text-rose-800 font-semibold cursor-pointer tracking-tighter hover:text-rose-700"
-          to="/seemore"
+          to={`/${url}/seemore/${option}`}
         >
           See more &gt;
         </Link>

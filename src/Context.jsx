@@ -44,6 +44,15 @@ export function MainCtxProvider(props) {
     localStorage.setItem("favoritesList", stringifiedItem);
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setInput("");
+  };
+
+  const handleChange = (e) => {
+    setInput(e.target.value);
+  };
+
   const contextValue = {
     movie,
     movies,
@@ -52,12 +61,15 @@ export function MainCtxProvider(props) {
     isPending,
     error,
     option,
+    url,
     setOption,
     setInput,
     setMovieDetails,
     handleFavorites,
     addfavoritesListToStorage,
     setUrl,
+    handleSubmit,
+    handleChange,
   };
 
   return <Main.Provider value={contextValue}>{props.children}</Main.Provider>;

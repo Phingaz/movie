@@ -47,7 +47,7 @@ export const TvSeries = () => {
               <HeroSection data={hero} />
             </div>
           </m.div>
-          <Features data={movies} options={fetchListTv} />
+          <Features data={movies} dropDownOptions={fetchListTv} />
         </Wrapper>
       ) : (
         <ErrorPage />

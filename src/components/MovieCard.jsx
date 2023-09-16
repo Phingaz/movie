@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import imgP from "./asset/imgPlaceholder.jpg";
-import { moveiGenreId } from "./data";
+import { moveiGenreId, tvShowGenreId } from "./data";
 import Main from "../Context";
 import { useContext, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
@@ -13,6 +13,7 @@ export const MovieCard = ({ details }) => {
     handleFavorites,
     favorites,
     addfavoritesListToStorage,
+    url,
   } = useContext(Main);
 
   const scrollRef = useRef(null);
@@ -26,9 +27,10 @@ export const MovieCard = ({ details }) => {
     addfavoritesListToStorage(favorites);
   }, [addfavoritesListToStorage, details, favorites]);
 
+  const showType = url === "tv" ? tvShowGenreId : moveiGenreId;
   const genre = details.genre_ids.map((el) => {
     let g = [];
-    moveiGenreId.map((ele) => {
+    showType?.map((ele) => {
       if (el === ele.id) {
         g.push(ele.name);
       }
@@ -36,8 +38,8 @@ export const MovieCard = ({ details }) => {
     return g;
   });
 
-  const year = details.release_date;
-  const dateObject = new Date(year);
+  const showDate = url === "tv" ? details.first_air_date : details.release_date;
+  const dateObject = new Date(showDate);
 
   const options = { year: "numeric", month: "long", day: "numeric" };
   const formattedDate = dateObject.toLocaleDateString(undefined, options);
@@ -64,7 +66,11 @@ export const MovieCard = ({ details }) => {
       className="flex flex-col gap-1 border b transition-all hover:s hover:rounded-lg z-0 p-2 rounded-xl b bg-rose-50 bg-opacity-40"
     >
       <div className="relative w-full">
-        <div className="absolute top-0 left-0 w-full min-h-[45px] flex justify-end items-center p-2 z-[10]">
+        <div className="absolute top-0 left-0 w-full min-h-[45px] flex justify-between items-center p-2 z-[10]">
+          <p className="text-white t bg-gray-400 bg-opacity-60 px-2 py-1 rounded-lg">
+            {url === "tv" ? "Tv series" : "Movie"}
+          </p>
+
           <p
             className={`bg-white bg-opacity-30 text-gray-900 rounded-full w-[30px] h-[30px] flex justify-center items-center cursor-pointer hover:opacity-100 hover:l transition-all`}
           >
@@ -85,21 +91,19 @@ export const MovieCard = ({ details }) => {
         />
       </div>
 
-      <h2
-        className="text-red-900 font-bold md:text-lg lg:text-xl tracking-tight capitalize"
-      >
-        {details.title}
+      <h2 className="text-red-900 font-bold md:text-lg lg:text-xl tracking-tight capitalize">
+        {url === "tv" ? details.name : details.title}
       </h2>
 
       <div>
-        <p className="text-gray-400 font-semibold text-[13px]">
-          Release: {formattedDate}
+        <p className="text-red-800 font-semibold text-[13px]">
+          {formattedDate}
         </p>
       </div>
 
       <div className="flex flex-wrap gap-1">
         {genre.map((el, i) => (
-          <p key={i} className="font-semibold text-gray-400 text-[13px]">
+          <p key={i} className="font-base text-red-900 text-[12px]">
             {el}
             {i + 1 === genre.length ? "" : ","}
           </p>

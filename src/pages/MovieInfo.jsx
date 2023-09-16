@@ -7,7 +7,7 @@ import { ErrorPage } from "../components/ErrorPage";
 import { useContext } from "react";
 import Main from "../Context";
 
-export const Movies = () => {
+export const MovieInfo = () => {
   const { id } = useParams();
 
   const { movie, isPending } = useContext(Main);
