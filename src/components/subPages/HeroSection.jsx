@@ -37,7 +37,7 @@ export const HeroSection = ({ data }) => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.2 }}
-        className="flex gap-3 items-center justify-center font-bold self-start px-8 py-3 uppercase bg-rose-700 rounded-md"
+        className="flex gap-3 items-center justify-center font-bold self-start px-8 py-3 uppercase bg-rose-700 rounded-md link hover:bg-rose-600 hover:text-white hover:t"
         onClick={handleClick}
       >
         {" "}

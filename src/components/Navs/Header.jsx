@@ -5,11 +5,14 @@ import tv from "../asset/tv.png";
 import Main from "../../Context";
 import { useContext } from "react";
 import SearchIcon from "@mui/icons-material/Search";
+import { DropDownNav } from "./DropDownNav";
 
 export const Header = () => {
   const { input, setInput } = useContext(Main);
 
   const [sh, setSh] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [name, setName] = useState("John");
 
   const shoNa = () => {
     setSh((p) => !p);
@@ -27,8 +30,8 @@ export const Header = () => {
           isPending
             ? ""
             : isActive
-            ? "flex justify-center items-center gap-4 left-2 t"
-            : "flex justify-center items-center gap-4 left-2 t"
+            ? "flex justify-center items-center gap-4 left-2 link t"
+            : "flex justify-center items-center gap-4 left-2 link t"
         }
       >
         <img src={tv} width={"40px"} />
@@ -64,18 +67,24 @@ export const Header = () => {
           <SearchIcon />
         </div>
 
-        <NavLink
-          to="/login"
-          className={({ isActive, isPending }) =>
-            isPending
-              ? ""
-              : isActive
-              ? "flex justify-center items-center gap-4"
-              : "flex justify-center items-center gap-4"
-          }
-        >
-          <p className="font-normal">Sign in</p>
-        </NavLink>
+        <div className="flex">
+          {isLoggedIn ? (
+            <NavLink
+              to="/login"
+              className={({ isActive, isPending }) =>
+                isPending
+                  ? ""
+                  : isActive
+                  ? "flex justify-center items-center gap-4"
+                  : "flex justify-center items-center gap-4"
+              }
+            >
+              <p className="font-normal text-lg link">Sign in</p>
+            </NavLink>
+          ) : (
+            <DropDownNav name={name} />
+          )}
+        </div>
       </nav>
     </header>
   );

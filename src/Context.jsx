@@ -16,10 +16,13 @@ export function MainCtxProvider(props) {
   const [movies, setMovies] = useState([]);
   const [input, setInput] = useState("");
   const [favorites, setFavorites] = useState([]);
-  const [favoritesList, setFavoritesList] = useState([]);
 
   useEffect(() => {
     setMovies(data?.results);
+    const items = JSON.parse(localStorage.getItem("favoritesList"));
+    if (items) {
+      setFavorites(items);
+    }
   }, [data?.results]);
 
   const setMovieDetails = (data) => {
@@ -27,18 +30,22 @@ export function MainCtxProvider(props) {
   };
 
   const handleFavorites = (data) => {
-    favorites.length > 0
-      ? favorites.includes(data.id)
-        ? setFavorites((p) => p.filter((item) => item !== data.id))
-        : setFavorites((p) => [...p, data.id])
-      : setFavorites((p) => [...p, data.id]);
-    setFavoritesList((p) => [...p, data]);
+    const isFavorite = favorites.some((item) => item.id === data.id);
+    if (isFavorite) {
+      setFavorites((p) => p.filter((item) => item.id !== data.id));
+    } else {
+      setFavorites((p) => [...p, data]);
+    }
+  };
+
+  const addfavoritesListToStorage = (favorites) => {
+    const stringifiedItem = JSON.stringify(favorites);
+    localStorage.setItem("favoritesList", stringifiedItem);
   };
 
   const contextValue = {
     movie,
     movies,
-    favoritesList,
     input,
     favorites,
     isPending,
@@ -48,6 +55,7 @@ export function MainCtxProvider(props) {
     setInput,
     setMovieDetails,
     handleFavorites,
+    addfavoritesListToStorage,
   };
 
   return <Main.Provider value={contextValue}>{props.children}</Main.Provider>;

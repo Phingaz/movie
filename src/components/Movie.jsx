@@ -3,21 +3,7 @@ import star from "../components/asset/Star.png";
 import { MovieInfo } from "./MovieInfo";
 
 export const Movie = ({ movieInfo }) => {
-  // const year = Date.UTC(parseInt(movieInfo?.release_date)); /* ?.split("-")[0]*/
-  // const runtimeHour = Math.floor(movieInfo?.runtime / 60);
-  // const runtimeMin = movieInfo?.runtime % 60;
-
   const date = movieInfo?.release_date;
-  // const localDate = new Date(date);
-  // const utcDate = new Date(
-  //   localDate.getTime() - localDate.getTimezoneOffset() * 60000
-  // );
-
-  // const utcYear = utcDate.getUTCFullYear();
-  // const utcMonth = utcDate.getUTCMonth() + 1;
-  // const utcDay = utcDate.getUTCDate();
-
-  // console.log(utcYear, utcMonth, utcDay, date);
 
   return (
     <div className="flex-1">

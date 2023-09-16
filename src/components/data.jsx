@@ -30,6 +30,24 @@ export const links = [
   },
 ];
 
+export const loggedInLinks = [
+  {
+    id: 1,
+    name: "Movies",
+    path: "/",
+  },
+  {
+    id: 2,
+    name: "Tv Series",
+    path: "/tvseries",
+  },
+  {
+    id: 3,
+    name: "Favorites",
+    path: "/favorites",
+  },
+];
+
 export const fetchList = [
   { id: 1, name: "Now Playing", path: "now_playing" },
   { id: 2, name: "Popular", path: "popular" },

@@ -11,6 +11,7 @@
   z-index: 1;
   backdrop-filter: blur(2px);
   box-shadow: 0 1px 5px 1px rgba(0, 0, 0, 0.168);
+  padding: 0 3rem;
 }
 
 .nav_btn {
@@ -18,10 +19,7 @@
 }
 
 @media (max-width: 767px) {
-  .header {
-    position: fixed;
-    padding-left: 20px;
-  }
+  
   .nav {
     display: none;
     flex-direction: column;
@@ -34,13 +32,12 @@
     gap: 2rem;
     overflow-x: hidden;
     z-index: 999;
-    /* backdrop-filter: blur(5px); */
     background-color: rgba(0, 0, 0, 0.831);
   }
 
   .nav_btn {
     position: fixed;
-    right: 2rem;
+    right: 1.1rem;
     width: 40px;
     aspect-ratio: 1/1;
     cursor: pointer;

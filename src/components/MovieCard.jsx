@@ -2,18 +2,29 @@
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import imgP from "./asset/imgPlaceholder.jpg";
 import { moveiGenreId } from "./data";
-
 import Main from "../Context";
-import { useContext, useRef } from "react";
+import { useContext, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-
 import { motion as m } from "framer-motion";
 
-export const MovieCard = ({ details, favorites }) => {
-  const { setMovieDetails, handleFavorites } = useContext(Main);
+export const MovieCard = ({ details }) => {
+  const {
+    setMovieDetails,
+    handleFavorites,
+    favorites,
+    addfavoritesListToStorage,
+  } = useContext(Main);
+
   const scrollRef = useRef(null);
 
+  const navigate = useNavigate();
+
   const baseImgUrl = "https://image.tmdb.org/t/p/original/";
+  const img = details?.poster_path ? baseImgUrl + details.poster_path : imgP;
+
+  useEffect(() => {
+    addfavoritesListToStorage(favorites);
+  }, [addfavoritesListToStorage, details, favorites]);
 
   const genre = details.genre_ids.map((el) => {
     let g = [];
@@ -27,8 +38,6 @@ export const MovieCard = ({ details, favorites }) => {
 
   const year = details.release_date.split("-").join("/");
 
-  const navigate = useNavigate();
-
   const handlClick = () => {
     setMovieDetails(details);
     navigate("/movies/" + details.id);
@@ -39,7 +48,7 @@ export const MovieCard = ({ details, favorites }) => {
     handleFavorites(item);
   };
 
-  const img = details?.poster_path ? baseImgUrl + details.poster_path : imgP;
+  const isFavorite = favorites.some((item) => item.id === details.id);
 
   return (
     <m.div
@@ -57,7 +66,7 @@ export const MovieCard = ({ details, favorites }) => {
           >
             <FavoriteIcon
               className={`w-full h-full p-1 hover:opacity-100 z-[11] ${
-                favorites
+                isFavorite
                   ? "opacity-100 text-rose-600 "
                   : "text-white opacity-60"
               }`}

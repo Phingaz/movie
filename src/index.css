@@ -8,6 +8,10 @@
   .k {
     @apply border-2 border-green-500;
   }
+
+  .link {
+    @apply transition-all duration-200 hover:text-red-400 cursor-pointer;
+  }
   .s {
     scale: 1.01;
   }
@@ -26,6 +30,10 @@
 
   .t {
     text-shadow: 1px 1px 1px rgb(0, 0, 0);
+  }
+
+  .t-n {
+    text-shadow: 0px 0px 0px rgb(0, 0, 0);
   }
 
   .sh {

@@ -8,9 +8,11 @@ import { useContext } from "react";
 import { motion as m } from "framer-motion";
 
 export const Landing = () => {
-  const { movies, isPending, error, input } = useContext(Main);
+  const { movies, isPending, error } = useContext(Main);
 
-  const hero = !isPending && movies ? movies[0] : null;
+  const random = Math.floor(Math.random() * movies?.length);
+
+  const hero = !isPending && movies ? movies[random] : null;
 
   const bgUrl = hero
     ? `https://image.tmdb.org/t/p/original/${hero?.backdrop_path}`

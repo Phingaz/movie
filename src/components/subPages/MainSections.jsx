@@ -33,9 +33,9 @@ export const MainSections = ({
             <MovieCard key={movie.id} details={movie} />
           ))}
         </div>
-        <div className="flex flex-row justify-start items-center gap-5 cursor-pointer h-[60px] overflow-x-scroll px-5">
-          {total_pages > 0 &&
-            pagination.map((el) => (
+        {total_pages > 0 && (
+          <div className="flex flex-row justify-start items-center gap-5 cursor-pointer h-[60px] overflow-x-scroll px-5">
+            {pagination.map((el) => (
               <p
                 key={el}
                 className="font-semibold text-rose-800 text-lg hover:text-rose-600 transition-all duration-200 hover:l"
@@ -44,7 +44,8 @@ export const MainSections = ({
                 {el}
               </p>
             ))}
-        </div>
+          </div>
+        )}
       </section>
     </div>
   );
