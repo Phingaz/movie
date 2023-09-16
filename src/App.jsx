@@ -1,7 +1,7 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Landing } from "./pages/Landing";
 import { Login } from "./pages/Login";
-import { MovieInfo } from "./pages/MovieInfo";
+import { IdInfo } from "./pages/IdInfo";
 import { Search } from "./pages/Search";
 import { SeeMore } from "./pages/SeeMore";
 import { Favorites } from "./pages/Favorites";
@@ -24,7 +24,7 @@ export const App = () => {
       path: `/${url}/seemore/${option}`,
       element: <SeeMore />,
     },
-    { path: "/movies/:id", element: <MovieInfo /> },
+    { path: `/${url}_info/:id`, element: <IdInfo /> },
     { path: "/favorites", element: <Favorites /> },
     { path: "/tvseries", element: <TvSeries /> },
     { path: "*", element: <ErrorPage /> },

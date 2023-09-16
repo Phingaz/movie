@@ -9,7 +9,6 @@ import { motion as m } from "framer-motion";
 
 export const MovieCard = ({ details }) => {
   const {
-    setMovieDetails,
     handleFavorites,
     favorites,
     addfavoritesListToStorage,
@@ -45,8 +44,7 @@ export const MovieCard = ({ details }) => {
   const formattedDate = dateObject.toLocaleDateString(undefined, options);
 
   const handlClick = () => {
-    setMovieDetails(details);
-    navigate("/movies/" + details.id);
+    navigate(`/${url}_info/${details.id}`);
   };
 
   const addToFavorites = (e, item) => {

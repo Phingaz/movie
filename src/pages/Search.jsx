@@ -2,7 +2,7 @@ import { MainSections } from "../components/subPages/MainSections";
 import { Wrapper } from "../components/utitlity/Wrapper";
 import Main from "../Context";
 import useFetch from "../components/utitlity/useFetch";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Loader } from "../components/utitlity/Loader";
 import { ErrorPage } from "../components/ErrorPage";
 import { useLocation } from "react-router-dom";
@@ -12,7 +12,8 @@ export const Search = () => {
   const { pathname } = useLocation();
   const path = pathname?.split("/")[1];
 
-  console.log(path);
+  const [page, setPage] = useState(1);
+
 
   useEffect(() => {
     if (path === "tv") {
@@ -23,18 +24,25 @@ export const Search = () => {
   }, [path, setOption, setUrl]);
 
   const { data, isPending, error } = useFetch(
-    `https://api.themoviedb.org/3/search/${url}?query=${input}&include_adult=true&language=en-US&page=1, "GET"`
+    `https://api.themoviedb.org/3/search/${url}?query=${input}&include_adult=true&language=en-US&page=${page}, "GET"`
   );
+
+  const fetchData = (data) => {
+    setPage(data);
+  };
 
   return (
     <Wrapper>
       {isPending ? (
         <Loader />
       ) : !error.status ? (
-        <MainSections
+          <MainSections
+          page={page}
           title="Search results"
           errorMessage=" Search result not found, please refine your search"
+          fetchData={fetchData}
           data={data?.results}
+          total_pages={data?.total_pages}
         />
       ) : (
         <ErrorPage />

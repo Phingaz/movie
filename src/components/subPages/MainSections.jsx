@@ -3,6 +3,7 @@ import { MovieCard } from "../MovieCard";
 import Main from "../../Context";
 import { useContext } from "react";
 import { BackButton } from "../utitlity/BackButton";
+import ScrollToTop from "../utitlity/ScrollToTop";
 
 export const MainSections = ({
   title,
@@ -19,6 +20,7 @@ export const MainSections = ({
 
   return (
     <div className="bg-white w-screen z-[1] py-[100px]">
+      <ScrollToTop />
       <section className="flex flex-col gap-5 w-[min(90%,1300px)] mx-auto py-2">
         <div className="flex justify-between">
           <h1 className="text-3xl font-bold text-red-900">{title}</h1>

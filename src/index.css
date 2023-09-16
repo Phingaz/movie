@@ -9,6 +9,10 @@
     @apply border-2 border-green-500;
   }
 
+  .btn {
+    @apply flex gap-3 items-center justify-center font-bold self-start px-8 py-3 uppercase bg-rose-700 rounded-md link hover:bg-rose-600 hover:text-white hover:t
+  }
+
   .link {
     @apply transition-all duration-300 hover:text-red-400 cursor-pointer;
   }
