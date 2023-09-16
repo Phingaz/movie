@@ -1,0 +1,54 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,100;9..40,200;9..40,300;9..40,400;9..40,500;9..40,600;9..40,700;9..40,800;9..40,900&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .k {
+    @apply border-2 border-green-500;
+  }
+  .s {
+    scale: 1.01;
+  }
+
+  .b {
+    box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.239);
+  }
+
+  .l {
+    scale: 1.4;
+  }
+
+  .u::-webkit-scrollbar {
+    display: none;
+  }
+
+  .b {
+    box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.087);
+  }
+
+  .t {
+    text-shadow: 1px 1px 1px rgb(0, 0, 0);
+  }
+
+  .sh {
+    border: 1px SOLID RED;
+    background: rgb(14, 14, 14);
+    background: linear-gradient(
+      4deg,
+      rgba(14, 14, 14, 1) 0%,
+      rgba(105, 105, 99, 1) 29%,
+      rgba(185, 185, 174, 1) 68%
+    );
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: "DM Sans", sans-serif;
+}
