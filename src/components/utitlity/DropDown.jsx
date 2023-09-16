@@ -1,10 +1,10 @@
+/* eslint-disable react/prop-types */
 import { useState } from "react";
 import Main from "../../Context";
 import { useContext } from "react";
-import { fetchList } from "../data";
 import { Link } from "react-router-dom";
 
-export const DropDown = () => {
+export const DropDown = ({ options }) => {
   const [open, setOpen] = useState(false);
   const { option, setOption } = useContext(Main);
 
@@ -23,16 +23,22 @@ export const DropDown = () => {
     case "top_rated":
       title = "Top rated";
       break;
+    case "on_the_air":
+      title = "On The Air";
+      break;
+    case "airing_today":
+      title = "Airing Today";
+      break;
     default:
       break;
   }
 
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col gap-2 w-40">
       <button
         id="dropdownDefaultButton"
         data-dropdown-toggle="dropdown"
-        className="text-rose-800 font-bold bg-rose-100 hover:bg-rose-300 focus:ring-2 focus:outline-none focus:ring-rose-300  rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center transition-all duration-300 ease-in-out"
+        className="flex justify-between text-rose-800 font-bold bg-rose-100 hover:bg-rose-300 focus:ring-2 focus:outline-none focus:ring-rose-300  rounded-lg text-sm px-5 py-2.5 text-center  items-center transition-all duration-300 ease-in-out"
         type="button"
         onClick={() => setOpen(!open)}
       >
@@ -57,10 +63,10 @@ export const DropDown = () => {
         id="dropdown"
         className={`${
           open ? "flex animate-show" : "hidden"
-        } z-1 justify-center bg-rose-200 rounded-lg shadow w-44`}
+        } z-1 justify-center bg-rose-200 rounded-lg shadow w-full`}
       >
         <ul className="flex flex-col text-sm  text-gray-700 w-full py-2">
-          {fetchList.map((el) => (
+          {options?.map((el) => (
             <li key={el.id} className={`${open ? "animate-show" : ""} px-2`}>
               <Link
                 onClick={() => {

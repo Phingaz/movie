@@ -55,6 +55,13 @@ export const fetchList = [
   { id: 4, name: "Top Rated", path: "top_rated" },
 ];
 
+export const fetchListTv = [
+  { id: 1, name: "Airing Today", path: "airing_today" },
+  { id: 2, name: "On The Air", path: "on_the_air" },
+  { id: 3, name: "Popular", path: "popular" },
+  { id: 4, name: "Top Rated", path: "top_rated" },
+];
+
 export const moveiGenreId = [
   {
     id: 28,

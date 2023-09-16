@@ -4,6 +4,7 @@ import Main from "../Context";
 import { useContext, useState } from "react";
 import useFetch from "../components/utitlity/useFetch";
 import { Loader } from "../components/utitlity/Loader";
+import ScrollToTop from "../components/utitlity/ScrollToTop";
 
 export const SeeMore = () => {
   const { option } = useContext(Main);
@@ -34,11 +35,11 @@ export const SeeMore = () => {
 
   const fetchData = (data) => {
     setPage(data);
-    window.scrollTo(0, 0);
   };
 
   return (
     <Wrapper>
+      <ScrollToTop />
       {isPending ? (
         <Loader />
       ) : !error.status ? (

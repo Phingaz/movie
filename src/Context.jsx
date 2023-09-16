@@ -6,16 +6,12 @@ const Main = createContext();
 
 export function MainCtxProvider(props) {
   const [option, setOption] = useState("now_playing");
+  const [url, setUrl] = useState("movie");
 
   const { data, isPending, error } = useFetch(
-    `https://api.themoviedb.org/3/movie/${option}?language=en-US&page=1`,
+    `https://api.themoviedb.org/3/${url}/${option}?language=en-US&page=1`,
     "GET"
   );
-
-  const [movie, setMovie] = useState({});
-  const [movies, setMovies] = useState([]);
-  const [input, setInput] = useState("");
-  const [favorites, setFavorites] = useState([]);
 
   useEffect(() => {
     setMovies(data?.results);
@@ -24,6 +20,11 @@ export function MainCtxProvider(props) {
       setFavorites(items);
     }
   }, [data?.results]);
+
+  const [movie, setMovie] = useState({});
+  const [movies, setMovies] = useState([]);
+  const [input, setInput] = useState("");
+  const [favorites, setFavorites] = useState([]);
 
   const setMovieDetails = (data) => {
     setMovie(data);
@@ -56,6 +57,7 @@ export function MainCtxProvider(props) {
     setMovieDetails,
     handleFavorites,
     addfavoritesListToStorage,
+    setUrl,
   };
 
   return <Main.Provider value={contextValue}>{props.children}</Main.Provider>;

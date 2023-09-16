@@ -1,6 +1,6 @@
 import styled from "./Header.module.css";
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Navigate, useNavigate } from "react-router-dom";
 import tv from "../asset/tv.png";
 import Main from "../../Context";
 import { useContext } from "react";
@@ -11,8 +11,9 @@ export const Header = () => {
   const { input, setInput } = useContext(Main);
 
   const [sh, setSh] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [name, setName] = useState("John");
+  const navigate = useNavigate();
 
   const shoNa = () => {
     setSh((p) => !p);
@@ -20,6 +21,11 @@ export const Header = () => {
 
   const handleChange = (e) => {
     setInput(e.target.value);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    navigate("/search");
   };
 
   return (
@@ -52,8 +58,12 @@ export const Header = () => {
           styled.nav
         } ${sh ? styled.open : styled.close}`}
       >
-        <div className="md:w-6/12 w-full md:mx-auto h-[50px] rounded-lg bg-transparent border-2 border-slate-300 md:px-5 px-2 flex justify-between items-center b">
+        <form
+          onSubmit={handleSubmit}
+          className="md:w-6/12 w-full md:mx-auto h-[50px] rounded-lg bg-transparent border-2 border-slate-300 md:px-5 px-2 flex justify-between items-center b"
+        >
           <input
+            name="search"
             className={`w-full h-full bg-transparent outline-none font-normal${
               input.trim().length !== 0 && `text-slate-900 t`
             } ${
@@ -65,10 +75,12 @@ export const Header = () => {
             placeholder="What do you want to search for?"
           />
           <SearchIcon />
-        </div>
+        </form>
 
         <div className="flex">
           {isLoggedIn ? (
+            <DropDownNav name={name} />
+          ) : (
             <NavLink
               to="/login"
               className={({ isActive, isPending }) =>
@@ -81,8 +93,6 @@ export const Header = () => {
             >
               <p className="font-normal text-lg link">Sign in</p>
             </NavLink>
-          ) : (
-            <DropDownNav name={name} />
           )}
         </div>
       </nav>

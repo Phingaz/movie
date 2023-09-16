@@ -36,7 +36,11 @@ export const MovieCard = ({ details }) => {
     return g;
   });
 
-  const year = details.release_date.split("-").join("/");
+  const year = details.release_date;
+  const dateObject = new Date(year);
+
+  const options = { year: "numeric", month: "long", day: "numeric" };
+  const formattedDate = dateObject.toLocaleDateString(undefined, options);
 
   const handlClick = () => {
     setMovieDetails(details);
@@ -77,27 +81,25 @@ export const MovieCard = ({ details }) => {
         <img
           src={img}
           className="w-full object-contain object-center cursor-pointer rounded-lg pb-1"
-          data-testid="movie-poster"
           alt="poster-img"
         />
       </div>
 
       <h2
         className="text-red-900 font-bold md:text-lg lg:text-xl tracking-tight capitalize"
-        data-testid="movie-title"
       >
         {details.title}
       </h2>
 
       <div>
         <p className="text-gray-400 font-semibold text-[13px]">
-          Release: {year}
+          Release: {formattedDate}
         </p>
       </div>
 
       <div className="flex flex-wrap gap-1">
         {genre.map((el, i) => (
-          <p key={el} className="font-semibold text-gray-400 text-[13px]">
+          <p key={i} className="font-semibold text-gray-400 text-[13px]">
             {el}
             {i + 1 === genre.length ? "" : ","}
           </p>

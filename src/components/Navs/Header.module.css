@@ -19,7 +19,10 @@
 }
 
 @media (max-width: 767px) {
-  
+  .header {
+    padding: 0 1rem;
+  }
+
   .nav {
     display: none;
     flex-direction: column;

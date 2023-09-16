@@ -7,19 +7,18 @@ import Main from "../Context";
 import { useContext, useEffect } from "react";
 import { motion as m } from "framer-motion";
 import ScrollToTop from "../components/utitlity/ScrollToTop";
-import { fetchList } from "../components/data";
+import { fetchListTv } from "../components/data";
 import { useLocation } from "react-router-dom";
 
-export const Landing = () => {
+export const TvSeries = () => {
   const { pathname } = useLocation();
-  const path = pathname?.split("/")[1];
-
+  const path = pathname.split("/")[1];
   const { movies, isPending, error, setUrl, setOption } = useContext(Main);
 
   useEffect(() => {
-    if (path === "") {
-      setUrl("movie");
-      setOption("now_playing");
+    if (path === "tvseries") {
+      setUrl("tv");
+      setOption("top_rated");
     }
   }, [path, setOption, setUrl]);
 
@@ -48,7 +47,7 @@ export const Landing = () => {
               <HeroSection data={hero} />
             </div>
           </m.div>
-          <Features data={movies} options={fetchList} />
+          <Features data={movies} options={fetchListTv} />
         </Wrapper>
       ) : (
         <ErrorPage />

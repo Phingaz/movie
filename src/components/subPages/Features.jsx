@@ -3,12 +3,11 @@ import { MovieCard } from "../MovieCard";
 import { DropDown } from "../utitlity/DropDown";
 import { Link } from "react-router-dom";
 
-export const Features = ({ data }) => {
-
+export const Features = ({ data, options }) => {
   return (
     <section className="w-[min(90%,1300px)] mx-auto py-10">
       <div className="flex justify-between pb-10">
-        <DropDown />
+        <DropDown options={options} />
         <Link
           className="text-rose-800 font-semibold cursor-pointer tracking-tighter hover:text-rose-700"
           to="/seemore"
