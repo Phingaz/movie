@@ -46,7 +46,7 @@ export const Nav = () => {
               : `flex justify-center items-center gap-2 ${styled.home}`
           }
         >
-          <img src={tv} width={"40px"} />
+          {/* <img src={tv} width={"40px"} /> */}
           <p className=" text-[16px] font-semibold">MovieBox</p>
         </NavLink>
 
