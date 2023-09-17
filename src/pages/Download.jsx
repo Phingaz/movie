@@ -105,10 +105,10 @@ export const Download = () => {
                 <BackButton />
               </div>
               <div className="grid grid-cols-1 gap-[1.5rem] gap-y-3 mb-5">
-                <div className="flex justify-between items-center gap-5">
+                <div className="flex flex-col justify-between items-center gap-5">
                   <form
                     onSubmit={handleSubmit}
-                    className="h-[50px] flex-auto rounded-lg bg-transparent border-2 border-slate-300 flex justify-between items-center b px-2 hover:border-slate-400 transition-all duration-300 ease-in-out"
+                    className="h-[50px] flex-auto rounded-lg bg-transparent border-2 border-slate-300 flex justify-between items-center b px-2 hover:border-slate-400 transition-all duration-300 ease-in-out w-full"
                   >
                     <input
                       className="w-full h-full bg-transparent outline-none font-normal"
@@ -122,64 +122,66 @@ export const Download = () => {
                     </span>
                   </form>
 
-                  <div className="flex flex-col gap-2 w-40 h-[50px] z-[2]">
-                    <button
-                      id="dropdownDefaultButton"
-                      data-dropdown-toggle="dropdown"
-                      className="flex justify-between text-rose-800 font-bold bg-rose-100 hover:bg-rose-300 focus:ring-2 focus:outline-none focus:ring-rose-300  rounded-lg text-sm px-5 py-2.5 text-center  items-center transition-all duration-300 ease-in-out h-full"
-                      type="button"
-                      onClick={() => setOpen(!open)}
-                    >
-                      {site}{" "}
-                      <svg
-                        className="w-2.5 h-2.5 ml-2.5"
-                        aria-hidden="true"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 10 6"
+                  <div className="flex w-full justify-between gap-5">
+                    <div className="flex flex-col gap-2 w-40 h-[50px] z-[2]">
+                      <button
+                        id="dropdownDefaultButton"
+                        data-dropdown-toggle="dropdown"
+                        className="flex justify-between text-rose-800 font-bold bg-rose-100 hover:bg-rose-300 focus:ring-2 focus:outline-none focus:ring-rose-300  rounded-lg text-sm px-5 py-2.5 text-center  items-center transition-all duration-300 ease-in-out h-full"
+                        type="button"
+                        onClick={() => setOpen(!open)}
                       >
-                        <path
-                          stroke="currentColor"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="2"
-                          d="m1 1 4 4 4-4"
-                        />
-                      </svg>
-                    </button>
-                    <div
-                      id="dropdown"
-                      className={`${
-                        open ? "flex animate-show" : "hidden"
-                      } z-1 justify-center bg-rose-100 rounded-lg shadow w-full`}
-                    >
-                      <ul className="flex flex-col gap-1 text-sm  text-gray-700 w-full p-2">
-                        {supportedSites.map((el) => (
-                          <li
-                            key={el}
-                            className={`grid place-content-center font-semibold text-red-700 py-2 bg-red-200 hover:bg-rose-300 cursor-pointer transition-all duration-300 ease-in-out rounded-lg px-2`}
-                            value={el}
-                            onClick={() => {
-                              setSite(el);
-                              setOpen(!open);
-                            }}
-                          >
-                            {el}
-                          </li>
-                        ))}
-                      </ul>
+                        {site}{" "}
+                        <svg
+                          className="w-2.5 h-2.5 ml-2.5"
+                          aria-hidden="true"
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 10 6"
+                        >
+                          <path
+                            stroke="currentColor"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
+                            d="m1 1 4 4 4-4"
+                          />
+                        </svg>
+                      </button>
+                      <div
+                        id="dropdown"
+                        className={`${
+                          open ? "flex animate-show" : "hidden"
+                        } z-1 justify-center bg-rose-100 rounded-lg shadow w-full`}
+                      >
+                        <ul className="flex flex-col gap-1 text-sm  text-gray-700 w-full p-2">
+                          {supportedSites.map((el) => (
+                            <li
+                              key={el}
+                              className={`grid place-content-center font-semibold text-red-700 py-2 bg-red-200 hover:bg-rose-300 cursor-pointer transition-all duration-300 ease-in-out rounded-lg px-2`}
+                              value={el}
+                              onClick={() => {
+                                setSite(el);
+                                setOpen(!open);
+                              }}
+                            >
+                              {el}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
                     </div>
-                  </div>
 
-                  <input
-                    name="limit"
-                    className="w-14 h-[50px] bg-transparent outline-none font-normal rounded-lg border-2 border-slate-300 flex justify-between items-center b px-2 hover:border-slate-400 transition-all duration-300 ease-in-out text-xs"
-                    value={limit}
-                    onChange={(e) => setLimit(e.target.value)}
-                  />
-                  <button className="btn text-white" onClick={handleSubmit}>
-                    Search
-                  </button>
+                    <input
+                      name="limit"
+                      className="flex-1 h-[50px] bg-transparent outline-none font-normal rounded-lg border-2 border-slate-300 flex justify-between items-center b px-2 hover:border-slate-400 transition-all duration-300 ease-in-out text-xs"
+                      value={limit}
+                      onChange={(e) => setLimit(e.target.value)}
+                    />
+                    <button className="btn text-white" onClick={handleSubmit}>
+                      Search
+                    </button>
+                  </div>
                 </div>
                 {success ? (
                   data?.data?.map((el, i) => (
