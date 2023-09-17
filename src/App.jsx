@@ -9,6 +9,7 @@ import { TvSeries } from "./pages/TvSeries";
 import Main from "./Context";
 import { useContext } from "react";
 import { ErrorPage } from "./components/ErrorPage";
+import { Download } from "./pages/Download";
 
 export const App = () => {
   const { url, option } = useContext(Main);
@@ -27,6 +28,7 @@ export const App = () => {
     { path: `/${url}_info/:id`, element: <IdInfo /> },
     { path: "/favorites", element: <Favorites /> },
     { path: "/tvseries", element: <TvSeries /> },
+    { path: "/download", element: <Download /> },
     { path: "*", element: <ErrorPage /> },
   ]);
   return <RouterProvider router={router} />;

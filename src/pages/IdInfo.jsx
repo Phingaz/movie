@@ -12,11 +12,14 @@ import useFetch from "../components/utitlity/useFetch";
 export const IdInfo = () => {
   const { id } = useParams();
 
-  const { url } = useContext(Main);
+  const { url, setMovie } = useContext(Main);
 
   const { data, isPending, error } = useFetch(
     `https://api.themoviedb.org/3/${url}/${id}`
   );
+
+  !isPending && !error.status && setMovie(data);
+
   return (
     <>
       {isPending ? (

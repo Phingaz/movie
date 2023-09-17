@@ -10,7 +10,7 @@
   }
 
   .btn {
-    @apply flex gap-3 items-center justify-center font-bold self-start px-8 py-3 uppercase bg-rose-700 rounded-md link hover:bg-rose-600 hover:text-white hover:t
+    @apply flex gap-3 items-center justify-center font-bold self-start px-8 py-3 uppercase bg-rose-700 rounded-md link hover:bg-rose-600 hover:text-white hover:t;
   }
 
   .link {
@@ -49,6 +49,16 @@
       rgba(105, 105, 99, 1) 29%,
       rgba(185, 185, 174, 1) 68%
     );
+  }
+
+  .bre {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-word;
+    hyphens: auto;
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
   }
 }
 

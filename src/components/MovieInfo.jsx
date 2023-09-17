@@ -9,8 +9,6 @@ export const MovieInfo = ({ movieInfo, url }) => {
   const revenue = formatter.format(movieInfo?.revenue);
   const budget = formatter.format(movieInfo?.budget);
 
-  console.log(movieInfo)
-
   return (
     <div className="flex flex-col sm:flex-row gap-5 justify-between mb-5 sm:mb-0">
       <div className="flex-[7] flex flex-col gap-4 text-sm justify-between">

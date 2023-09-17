@@ -3,11 +3,11 @@ import { loggedInLinks } from "../data";
 import { Link } from "react-router-dom";
 
 // eslint-disable-next-line react/prop-types
-export const DropDownNav = ({ name }) => {
+export const DropDownNav = () => {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="flex flex-col gap-2 relative w-40 ">
+    <div className="flex flex-col gap-2 relative w-40 z-20">
       <button
         className="flex justify-between text-rose-800 font-bold bg-rose-100 hover:bg-rose-300 focus:ring-2 focus:outline-none focus:ring-rose-300  rounded-lg text-sm px-5 py-2.5 text-center  items-center transition-all duration-300 ease-in-out"
         type="button"

@@ -1,8 +1,11 @@
 /* eslint-disable react/prop-types */
+import { useNavigate } from "react-router-dom";
 import star from "../components/asset/Star.png";
+import m from "../components/asset/m.png";
 import { MovieInfo } from "./MovieInfo";
 
 export const Movie = ({ movieInfo, url }) => {
+  const navigate = useNavigate();
   const showDate =
     url === "tv" ? movieInfo?.first_air_date : movieInfo?.release_date;
   const dateObject = new Date(showDate);
@@ -53,6 +56,11 @@ export const Movie = ({ movieInfo, url }) => {
         </div>
       </div>
       <MovieInfo movieInfo={movieInfo} url={url} />
+      <img
+        src={m}
+        className="w-[20px] aspect-square"
+        onClick={() => navigate("/download")}
+      ></img>
     </div>
   );
 };

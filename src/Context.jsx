@@ -21,6 +21,7 @@ export function MainCtxProvider(props) {
     }
   }, [data?.results]);
 
+  const [movie, setMovie] = useState([]);
   const [movies, setMovies] = useState([]);
   const [input, setInput] = useState("");
   const [favorites, setFavorites] = useState([]);
@@ -49,6 +50,7 @@ export function MainCtxProvider(props) {
   };
 
   const contextValue = {
+    movie,
     movies,
     input,
     favorites,
@@ -56,6 +58,7 @@ export function MainCtxProvider(props) {
     error,
     option,
     url,
+    setMovie,
     setOption,
     setInput,
     handleFavorites,
