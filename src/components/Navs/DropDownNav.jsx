@@ -13,7 +13,7 @@ export const DropDownNav = () => {
         type="button"
         onClick={() => setOpen(!open)}
       >
-        {Link[0].name}
+        {loggedInLinks[0]?.name}
         <svg
           className="w-2.5 h-2.5 ml-2.5"
           aria-hidden="true"
