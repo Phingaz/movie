@@ -96,7 +96,7 @@ export const Download = () => {
         <Loader />
       ) : (
         <>
-          <div className="bg-white w-screen z-[1] pt-[100px]">
+          <div className="bg-white w-screen z-[1] pt-[100px] min-h-screen">
             <section className="flex flex-col gap-5 w-[min(90%,1300px)] mx-auto py-2">
               <div className="flex justify-between">
                 <h1 className="text-3xl font-bold text-red-900">
@@ -122,8 +122,8 @@ export const Download = () => {
                     </span>
                   </form>
 
-                  <div className="flex w-full justify-between gap-5">
-                    <div className="flex flex-col gap-2 w-40 h-[50px] z-[2]">
+                  <div className="flex w-full justify-between gap-2">
+                    <div className="flex flex-col gap-2 w-[35%] h-[50px] z-[2]">
                       <button
                         id="dropdownDefaultButton"
                         data-dropdown-toggle="dropdown"
@@ -174,11 +174,11 @@ export const Download = () => {
 
                     <input
                       name="limit"
-                      className="flex-1 h-[50px] bg-transparent outline-none font-normal rounded-lg border-2 border-slate-300 flex justify-between items-center b px-2 hover:border-slate-400 transition-all duration-300 ease-in-out text-xs"
+                      className="flex w-[10%] h-[50px] bg-transparent outline-none font-normal rounded-lg border-2 border-slate-300 justify-between items-center b px-2 hover:border-slate-400 transition-all duration-300 ease-in-out text-xs"
                       value={limit}
                       onChange={(e) => setLimit(e.target.value)}
                     />
-                    <button className="btn text-white" onClick={handleSubmit}>
+                    <button className="btn text-white w-[40%]" onClick={handleSubmit}>
                       Search
                     </button>
                   </div>
