@@ -14,7 +14,7 @@ export const Landing = () => {
   const { pathname } = useLocation();
   const path = pathname?.split("/")[1];
 
-  const { movies, isPending, error, setUrl, setOption } = useContext(Main);
+  const { movies, isPending, error, setUrl, setOption, url } = useContext(Main);
 
   useEffect(() => {
     if (path === "") {
@@ -45,7 +45,7 @@ export const Landing = () => {
               className={`relative min-h-[500px] bg-[image:var(--image-url)] bg-gray-500 w-screen bg-no-repeat bg-cover bg-top `}
             >
               <div className="w-[min(90%,1300px)] mx-auto h-[calc(75vh+80px)] ">
-                <HeroSection data={hero} />
+                <HeroSection url={url} data={hero}/>
               </div>
             </m.div>
             <Features data={movies} dropDownOptions={fetchList} />

@@ -43,8 +43,8 @@ export const Download = () => {
   ];
 
   useEffect(() => {
-    fetchData(page, limit, searchInput, site);
-  }, [limit, page, searchInput, site]);
+    fetchData(page);
+  }, [page]);
 
   const increasePage = () => {
     setPage((p) => {
@@ -59,7 +59,7 @@ export const Download = () => {
     window.scrollTo(0, 0);
   };
 
-  const fetchData = async (page, limit, searchInput, site) => {
+  const fetchData = async (page) => {
     try {
       const req = await fetch(
         `https://torrent-api-py-nx0x.onrender.com/api/v1/search?site=${site}&query=${searchInput}&limit=${limit}&page=${page}`

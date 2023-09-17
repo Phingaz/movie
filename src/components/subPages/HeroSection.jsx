@@ -3,11 +3,13 @@ import PlayCircleIcon from "@mui/icons-material/PlayCircle";
 import { useNavigate } from "react-router-dom";
 import { motion as m } from "framer-motion";
 
-export const HeroSection = ({ data }) => {
+export const HeroSection = ({ data, url }) => {
   const navigate = useNavigate();
   const handleClick = () => {
-    navigate("/movies/" + data.id);
+    navigate(`/${url}_info/${data.id}`);
   };
+
+  console.log(data)
 
   return (
     <main className="flex flex-col justify-center h-[100%] w-full md:w-6/12 text-white">
