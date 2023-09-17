@@ -45,6 +45,11 @@ export const Movie = ({ movieInfo, url }) => {
                 {runTimeHour}h {runTimeMin}m
               </span>
             )}
+            <img
+        src={m}
+        className="w-[20px] aspect-square"
+        onClick={() => navigate("/download")}
+      ></img>
           </h1>
         </div>
         <div className="flex flex-1 justify-center items-center gap-1">
@@ -56,11 +61,6 @@ export const Movie = ({ movieInfo, url }) => {
         </div>
       </div>
       <MovieInfo movieInfo={movieInfo} url={url} />
-      <img
-        src={m}
-        className="w-[20px] aspect-square"
-        onClick={() => navigate("/download")}
-      ></img>
     </div>
   );
 };
