@@ -9,8 +9,6 @@ export const HeroSection = ({ data, url }) => {
     navigate(`/${url}_info/${data.id}`);
   };
 
-  console.log(data)
-
   return (
     <main className="flex flex-col justify-center h-[100%] w-full md:w-6/12 text-white">
       <m.h1

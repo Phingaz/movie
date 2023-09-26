@@ -96,33 +96,6 @@ export const MovieInfo = ({ movieInfo, url }) => {
           </p>
         </div>
       </div>
-      {/* <div className="flex-[3] flex flex-col gap-3 items-center">
-        {url === "tv" ? (
-          <>
-            <button className="bg-rose-700 text-white py-2 rounded-lg w-full font-semibold">
-              See Showtimes
-            </button>
-            <button className="bg-rose-200 text-black py-2 rounded-lg w-full font-semibold border-rose-700 border-[1px]">
-              More watch options
-            </button>
-          </>
-        ) : (
-          <button className="btn w-full text-white">
-            Similar
-          </button>
-        )}
-        <div className="grid grid-cols-3 gap-1 rounded-md">
-          <img
-            src={s}
-            className="object-contain object-center rounded-tl-lg rounded-bl-lg"
-          />
-          <img src={s} className="object-contain object-center" />
-          <img
-            src={s}
-            className="object-contain object-center rounded-tr-lg rounded-br-lg"
-          />
-        </div>
-      </div> */}
     </div>
   );
 };

@@ -36,23 +36,28 @@ export const Landing = () => {
       {isPending ? (
         <Loader />
       ) : !error.status ? (
-          <Wrapper>
-            <ScrollToTop />
-            <m.div
-              initial={{ opacity: 0.9, y: 3 }}
-              animate={{ opacity: 1, y: 0 }}
-              style={{ "--image-url": `url(${bgUrl})` }}
-              className={`relative min-h-[500px] bg-[image:var(--image-url)] bg-gray-500 w-screen bg-no-repeat bg-cover bg-top `}
-            >
-              <div className="w-[min(90%,1300px)] mx-auto h-[calc(75vh+80px)] ">
-                <HeroSection url={url} data={hero}/>
-              </div>
-            </m.div>
-            <Features data={movies} dropDownOptions={fetchList} />
-          </Wrapper>
+        <Wrapper>
+          <ScrollToTop />
+          <m.div
+            initial={{ opacity: 0.9, y: 3 }}
+            animate={{ opacity: 1, y: 0 }}
+            style={{ "--image-url": `url(${bgUrl})` }}
+            className={`relative min-h-[500px] bg-[image:var(--image-url)] bg-gray-500 w-screen bg-no-repeat bg-cover bg-top `}
+          >
+            <div className="w-[min(90%,1300px)] mx-auto h-[calc(75vh+80px)] ">
+              <HeroSection url={url} data={hero} />
+            </div>
+          </m.div>
+          <Features data={movies} dropDownOptions={fetchList} />
+        </Wrapper>
       ) : (
         <ErrorPage />
       )}
     </>
   );
+};
+
+export const loader = () => {
+  fetch("https://torrent-api-py-nx0x.onrender.com/api/v1/");
+  return null;
 };

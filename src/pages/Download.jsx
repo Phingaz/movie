@@ -7,14 +7,15 @@ import { BackButton } from "../components/utitlity/BackButton";
 import OutputIcon from "@mui/icons-material/Output";
 import CloudDownloadIcon from "@mui/icons-material/CloudDownload";
 import SearchIcon from "@mui/icons-material/Search";
+import { NextPage } from "../components/utitlity/NextPage";
 
 export const Download = () => {
-  const { movie, url } = useContext(Main);
+  const { movie, url, increasePage, reducePage, downloadPage, setDownloadPage } =
+    useContext(Main);
 
   const input = url === "movie" ? movie.original_title : movie?.name;
 
   const [searchInput, setsearchInput] = useState(input ? input : "");
-  const [page, setPage] = useState(1);
   const [data, setData] = useState([]);
   const [isPending, setIsPending] = useState(false);
   const [error, setError] = useState(null);
@@ -27,39 +28,27 @@ export const Download = () => {
     "1337x",
     "piratebay",
     "magnetdl",
-    "bitsearch",
+    // "bitsearch",
     "limetorrent",
-    "torlock",
-    "zooqle",
-    "tgx",
-    "nyaasi",
-    "kickass",
-    "libgen",
-    "yts",
-    "torrentfunk",
-    "glodls",
-    "torrentproject",
-    "ybt",
+    // "torlock",
+    // "zooqle",
+    // "tgx",
+    // "nyaasi",
+    // "kickass",
+    // "libgen",
+    // "yts",
+    // "torrentfunk",
+    // "glodls",
+    // "torrentproject",
+    // "ybt",
   ];
 
   useEffect(() => {
-    fetchData(page);
-  }, [page]);
-
-  const increasePage = () => {
-    setPage((p) => {
-      return p === data?.total_pages ? data?.total_pages : p + 1;
-    });
-    window.scrollTo(0, 0);
-  };
-  const reducePage = () => {
-    setPage((p) => {
-      return p <= 1 ? 1 : p - 1;
-    });
-    window.scrollTo(0, 0);
-  };
+    fetchData(downloadPage);
+  }, [downloadPage]);
 
   const fetchData = async (page) => {
+    setIsPending(true);
     try {
       const req = await fetch(
         `https://torrent-api-py-nx0x.onrender.com/api/v1/search?site=${site}&query=${searchInput}&limit=${limit}&page=${page}`
@@ -81,7 +70,7 @@ export const Download = () => {
     e.preventDefault();
     setIsPending(true);
     setSuccess(false);
-    await fetchData(page, limit, searchInput, site);
+    await fetchData(downloadPage, limit, searchInput, site);
     history.replaceState(null, null, "/download");
   };
 
@@ -178,7 +167,10 @@ export const Download = () => {
                       value={limit}
                       onChange={(e) => setLimit(e.target.value)}
                     />
-                    <button className="btn text-white w-[40%]" onClick={handleSubmit}>
+                    <button
+                      className="btn text-white w-[40%]"
+                      onClick={handleSubmit}
+                    >
                       Search
                     </button>
                   </div>
@@ -187,41 +179,39 @@ export const Download = () => {
                   data?.data?.map((el, i) => (
                     <div
                       key={i}
-                      className="flex md:flex-row flex-col md:justify-between md:items-center md:gap-3 gap-1 border b transition-all hover:s hover:rounded-lg z-0 p-2 rounded-xl b bg-rose-50 bg-opacity-40 "
+                      className="flex md:flex-row flex-col md:justify-between md:items-center md:gap-2 gap-1 border b transition-all hover:s hover:rounded-lg z-0 p-2 rounded-xl b bg-rose-50 bg-opacity-40 "
                     >
-                      <p className="flex-wrap bre text-sm font-semibold flex-[5] text-red-950">
+                      <p className="flex-wrap bre text-sm font-semibold flex-[7] text-red-950">
                         {el.name}
                       </p>
-                      <p className="flex-wrap bre font-semibold flex-[2]">
+                      <p className="flex-wrap text-sm bre font-semibold flex-[3]">
                         Seeders: {el.seeders}
                       </p>
-                      <p className="flex-wrap bre font-semibold flex-[2]">
+                      <p className="flex-wrap text-sm bre font-semibold flex-[3]">
                         Leechers: {el.leechers}
                       </p>
-                      <p className="flex-wrap bre font-semibold flex-[2]">
+                      <p className="flex-wrap bre text-xs font-semibold flex-[2]">
                         Size: {el.size}
                       </p>
-                      <p className="flex-wrap bre font-semibold flex-[2]">
+                      <p className="flex-wrap bre text-xs font-semibold flex-[3]">
                         Date: {el.date}
                       </p>
                       <a
-                        className="bre flex justify-center gap-3 items-center flex-[2] bg-rose-200 rounded-md text-rose-800 link hover:text-rose-800 hover:s px-1 md:py-0 py-1"
+                        className="bre flex justify-center gap-3 items-center flex-[1] rounded-md text-rose-800 link hover:text-rose-600 px-1 md:py-0 py-1"
                         href={el.url}
                         target="_blank"
                         rel="noreferrer"
                       >
-                        Link to site
                         <span>
                           <OutputIcon />
                         </span>
                       </a>
                       <a
-                        className="bre flex justify-center gap-3 items-center flex-[2] bg-rose-200 rounded-md text-rose-800 link hover:text-rose-800 hover:s"
+                        className="bre flex justify-center gap-3 items-center flex-[1]  rounded-md text-rose-800 link hover:text-rose-600 "
                         href={el.magnet}
                         target="_blank"
                         rel="noreferrer"
                       >
-                        Magnet
                         <span>
                           <CloudDownloadIcon />
                         </span>
@@ -234,18 +224,12 @@ export const Download = () => {
               </div>
 
               {data?.total_pages && (
-                <div className="flex justify-center items-center gap-2">
-                  <button className="btn text-white" onClick={reducePage}>
-                    Prev
-                  </button>
-                  <p className="font-bold text-lg flex items-center gap-1 justify-center">
-                    Page <span className="text-rose-500 text-2xl">{page}</span>{" "}
-                    of {data?.total_pages}
-                  </p>
-                  <button className="btn text-white" onClick={increasePage}>
-                    Next
-                  </button>
-                </div>
+                <NextPage
+                  reducePage={() => reducePage(setDownloadPage)}
+                  page={downloadPage}
+                  total_pages={data?.total_pages}
+                  increasePage={() => increasePage(setDownloadPage)}
+                />
               )}
             </section>
           </div>

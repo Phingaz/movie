@@ -4,19 +4,11 @@ import Main from "../../Context";
 import { useContext } from "react";
 import { BackButton } from "../utitlity/BackButton";
 import ScrollToTop from "../utitlity/ScrollToTop";
+import { NextPage } from "../utitlity/NextPage";
 
-export const MainSections = ({
-  title,
-  errorMessage,
-  data,
-  fetchData,
-  total_pages,
-}) => {
-  const { input } = useContext(Main);
-  const pagination = [];
-  for (let i = 1; i < total_pages; i++) {
-    pagination.push(i);
-  }
+export const MainSections = ({ title, errorMessage, data, total_pages }) => {
+  const { input, increasePage, seemorePage, setSeemorePage, reducePage } =
+    useContext(Main);
 
   return (
     <div className="bg-white w-screen z-[1] py-[100px]">
@@ -36,17 +28,12 @@ export const MainSections = ({
           ))}
         </div>
         {total_pages > 0 && (
-          <div className="flex flex-row justify-start items-center gap-5 cursor-pointer h-[60px] overflow-x-scroll px-5">
-            {pagination.map((el) => (
-              <p
-                key={el}
-                className="font-semibold text-rose-800 text-lg hover:text-rose-600 transition-all duration-200 hover:l"
-                onClick={() => fetchData(el)}
-              >
-                {el}
-              </p>
-            ))}
-          </div>
+          <NextPage
+            reducePage={() => reducePage(setSeemorePage)}
+            page={seemorePage}
+            total_pages={total_pages}
+            increasePage={() => increasePage(setSeemorePage)}
+          />
         )}
       </section>
     </div>

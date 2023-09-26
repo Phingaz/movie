@@ -13,6 +13,7 @@ export const useFetch = (url, method) => {
     const fetchData = async () => {
       setIsPending(true);
       try {
+        fetch("https://torrent-api-py-nx0x.onrender.com/api/v1/");
         const response = await fetch(url, {
           method: method,
           headers: {

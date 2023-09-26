@@ -49,7 +49,25 @@ export function MainCtxProvider(props) {
     setInput(e.target.value);
   };
 
+  const [seemorePage, setSeemorePage] = useState(1);
+  const [downloadPage, setDownloadPage] = useState(1);
+
+  const increasePage = (pageToSet) => {
+    pageToSet((p) => {
+      return p === data?.total_pages ? data?.total_pages : p + 1;
+    });
+    window.scrollTo(0, 0);
+  };
+  const reducePage = (pageToSet) => {
+    pageToSet((p) => {
+      return p <= 1 ? 1 : p - 1;
+    });
+    window.scrollTo(0, 0);
+  };
+
   const contextValue = {
+    downloadPage,
+    seemorePage,
     movie,
     movies,
     input,
@@ -58,6 +76,10 @@ export function MainCtxProvider(props) {
     error,
     option,
     url,
+    setDownloadPage,
+    setSeemorePage,
+    increasePage,
+    reducePage,
     setMovie,
     setOption,
     setInput,

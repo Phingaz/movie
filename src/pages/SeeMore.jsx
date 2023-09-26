@@ -1,16 +1,18 @@
 /* eslint-disable react/prop-types */
 import { MainSections } from "../components/subPages/MainSections";
 import { Wrapper } from "../components/utitlity/Wrapper";
-import { useState } from "react";
 import useFetch from "../components/utitlity/useFetch";
 import { Loader } from "../components/utitlity/Loader";
 import ScrollToTop from "../components/utitlity/ScrollToTop";
 import Main from "../Context";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 
 export const SeeMore = () => {
-  const { option, url } = useContext(Main);
-  const [page, setPage] = useState(1);
+  const { option, url, seemorePage, setSeemorePage } = useContext(Main);
+
+  useEffect(() => {
+    setSeemorePage(1);
+  }, []);
 
   let title = "";
 
@@ -32,12 +34,14 @@ export const SeeMore = () => {
   }
 
   const { data, isPending, error } = useFetch(
-    `https://api.themoviedb.org/3/${url}/${option}?language=en-US&page=${page}`
+    `https://api.themoviedb.org/3/${url}/${option}?language=en-US&page=${seemorePage}`
   );
 
-  const fetchData = (data) => {
-    setPage(data);
-  };
+  history.pushState(
+    null,
+    null,
+    `/${url}/seemore/${option}?page=${seemorePage}`
+  );
 
   return (
     <Wrapper>
@@ -48,8 +52,7 @@ export const SeeMore = () => {
         <MainSections
           title={title}
           data={data?.results}
-          fetchData={fetchData}
-          page={page}
+          page={seemorePage}
           total_pages={data?.total_pages}
         />
       ) : (

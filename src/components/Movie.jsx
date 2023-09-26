@@ -45,11 +45,6 @@ export const Movie = ({ movieInfo, url }) => {
                 {runTimeHour}h {runTimeMin}m
               </span>
             )}
-            <img
-        src={m}
-        className="w-[20px] aspect-square"
-        onClick={() => navigate("/download")}
-      ></img>
           </h1>
         </div>
         <div className="flex flex-1 justify-center items-center gap-1">
@@ -57,6 +52,11 @@ export const Movie = ({ movieInfo, url }) => {
           <p className="text-gray-300">
             {movieInfo?.vote_average?.toFixed(1)}{" "}
           </p>
+          <img
+            src={m}
+            className="w-[20px] aspect-square"
+            onClick={() => navigate("/download")}
+          />
           <p>| {movieInfo?.vote_count?.toString().slice(0, 3)}k</p>
         </div>
       </div>

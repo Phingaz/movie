@@ -1,5 +1,5 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { Landing } from "./pages/Landing";
+import { Landing, loader } from "./pages/Landing";
 import { Login } from "./pages/Login";
 import { IdInfo } from "./pages/IdInfo";
 import { Search } from "./pages/Search";
@@ -15,16 +15,10 @@ export const App = () => {
   const { url, option } = useContext(Main);
 
   const router = createBrowserRouter([
-    { path: "/", element: <Landing /> },
+    { path: "/", element: <Landing />, loader: loader },
     { path: "/login", element: <Login /> },
-    {
-      path: `/${url}/search`,
-      element: <Search />,
-    },
-    {
-      path: `/${url}/seemore/${option}`,
-      element: <SeeMore />,
-    },
+    { path: `/${url}/search`, element: <Search /> },
+    { path: `/${url}/seemore/${option}`, element: <SeeMore /> },
     { path: `/${url}_info/:id`, element: <IdInfo /> },
     { path: "/favorites", element: <Favorites /> },
     { path: "/tvseries", element: <TvSeries /> },
