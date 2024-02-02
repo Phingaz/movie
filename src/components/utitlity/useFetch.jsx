@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import.meta.env.KEY;
+import.meta.env.VITE_KEY;
 
 export const useFetch = (url, method) => {
   const [data, setData] = useState({});
